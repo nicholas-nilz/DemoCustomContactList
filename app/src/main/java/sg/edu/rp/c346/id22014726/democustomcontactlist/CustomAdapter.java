@@ -8,6 +8,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.sqaureup.picasso.Picasso;
+
+import java.time.Instant;
 import java.util.ArrayList;
 
 public class CustomAdapter extends ArrayAdapter {
@@ -16,7 +19,8 @@ public class CustomAdapter extends ArrayAdapter {
     int layout_id;
     ArrayList<Contact> contactList;
 
-public CustomAdapter(Context context, int resource, ArrayList<Contact> objects) {
+
+    public CustomAdapter(Context context, int resource, ArrayList<Contact> objects) {
     super(context, resource, objects);
     parent_context = context;
     layout_id = resource;
@@ -33,6 +37,7 @@ public CustomAdapter(Context context, int resource, ArrayList<Contact> objects) 
     TextView tvCode = rowView.findViewById(R.id.textViewCountryCode);
     TextView tvNum = rowView.findViewById(R.id.textViewPhoneNum);
     ImageView ivGender = rowView.findViewById(R.id.imageViewGender);
+    ImageView iv = rowView.findViewById(R.id.iv);
 
     Contact currentItem = contactList.get(position);
     tvName.setText(currentItem.getName());
@@ -45,6 +50,8 @@ public CustomAdapter(Context context, int resource, ArrayList<Contact> objects) 
 
     } else {
         ivGender.setImageResource(R.drawable.female);
+        String imageUrl = "https://i.imgur.com/tGbaZCY.jpg";
+        Picasso.with(parent_context).load(imageUrl).into(iv);
     }
 
     return rowView;
